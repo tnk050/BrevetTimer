@@ -24,7 +24,7 @@ const QrCodeModal: React.FC<QrCodeProps> = (props) => {
     depLock: depatureLocked,
   };
   const stringified = queryString.stringify(query);
-  const url = location.origin + '/?' + stringified;
+  const url = location.href + '?' + stringified;
 
   return (
     <Container
