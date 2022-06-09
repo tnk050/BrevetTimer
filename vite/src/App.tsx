@@ -1,4 +1,5 @@
 import { useState, useEffect, useMemo } from 'react';
+import { lazy, Suspense } from 'react';
 
 import { Typography } from '@mui/material';
 import { Container } from '@mui/material';
@@ -17,11 +18,13 @@ import {
   defineTime,
   getDateString,
 } from './util/handleParameter';
+
 import DistanceButton from './component/DistanceButton';
 import BrevetPicker from './component/BrevetPicker';
 import FooterButtons from './component/FooterButtons';
-import SettingModal from './component/SettingModal';
-import QrCodeModal from './component/QrCodeModal';
+
+const SettingModal = lazy(() => import('./component/SettingModal'));
+const QrCodeModal = lazy(() => import('./component/QrCodeModal'));
 
 const {
   queryDistance,
@@ -118,10 +121,12 @@ function App() {
         aria-labelledby="settings"
         aria-describedby="settings"
       >
-        <SettingModal
-          distanceLockSwitch={distanceLockSwitch}
-          departureLockSwitch={departureLockSwitch}
-        />
+        <Suspense>
+          <SettingModal
+            distanceLockSwitch={distanceLockSwitch}
+            departureLockSwitch={departureLockSwitch}
+          />
+        </Suspense>
       </Modal>
       <Modal
         open={qrCodeOpen}
@@ -129,12 +134,14 @@ function App() {
         aria-labelledby="qr-code"
         aria-describedby="qr-code"
       >
-        <QrCodeModal
-          distance={distance}
-          departure={depart}
-          distanceLockSwitch={distanceLockSwitch}
-          departureLockSwitch={departureLockSwitch}
-        />
+        <Suspense>
+          <QrCodeModal
+            distance={distance}
+            departure={depart}
+            distanceLockSwitch={distanceLockSwitch}
+            departureLockSwitch={departureLockSwitch}
+          />
+        </Suspense>
       </Modal>
     </div>
   );

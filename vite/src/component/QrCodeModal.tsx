@@ -36,7 +36,12 @@ const QrCodeModal: React.FC<QrCodeProps> = (props) => {
       }}
     >
       <QrCode url={url} />
-      <Typography variant="body2" component="div" sx={{ mx: 3 }}>
+      <Typography
+        variant="body2"
+        paragraph
+        sx={{ mx: 1 }}
+        style={{ overflowWrap: 'anywhere' }}
+      >
         URL:{url}
       </Typography>
     </Container>
