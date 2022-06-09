@@ -6,6 +6,7 @@ const root = `${process.cwd()}/vite`;
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: '/brevet-timer/',
   root: root,
   plugins: [react()],
   resolve: {
