@@ -1,4 +1,4 @@
-import { useQRCode } from 'next-qrcode';
+import { useQRCode } from './useQRCode';
 
 const QrCode: React.FC<{ url: string }> = (props) => {
   const { Canvas } = useQRCode();
