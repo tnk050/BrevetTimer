@@ -3,11 +3,15 @@ import { useCallback } from 'react';
 import { Container } from '@mui/material';
 import { IconButton } from '@mui/material';
 
+import AlarmOnIcon from '@mui/icons-material/AlarmOn';
 import SettingsIcon from '@mui/icons-material/Settings';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 
+import { newDateZeroSecond } from '@/util/calculate';
+
 const FooterButtons: React.FC<FooterButtonsProps> = (props) => {
-  const { settingsOpen, qrCodeOpen } = props;
+  const { timeReset, settingsOpen, qrCodeOpen } = props;
+  const handleTimeReset = useCallback(() => timeReset(newDateZeroSecond()), []);
   const handleSetting = useCallback(() => settingsOpen(true), []);
   const handleQrCode = useCallback(() => qrCodeOpen(true), []);
 
@@ -19,6 +23,9 @@ const FooterButtons: React.FC<FooterButtonsProps> = (props) => {
         justifyContent: 'space-around',
       }}
     >
+      <IconButton aria-label="time-reset" onClick={handleTimeReset}>
+        <AlarmOnIcon fontSize="large" />
+      </IconButton>
       <IconButton aria-label="setting" onClick={handleSetting}>
         <SettingsIcon fontSize="large" />
       </IconButton>

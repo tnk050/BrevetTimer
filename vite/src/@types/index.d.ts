@@ -43,6 +43,7 @@ type QrCodeProps = {
 };
 
 type FooterButtonsProps = {
+  timeReset: (newValue: Date | null) => void;
   settingsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   qrCodeOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
