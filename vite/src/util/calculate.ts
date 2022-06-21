@@ -5,14 +5,14 @@ export function calculateResult(
   finish: Date,
   distance: Distance
 ): string {
-  let result = differenceInMinutes(finish, depart, { roundingMethod: 'floor' });
+  let result = differenceInMinutes(finish, depart, { roundingMethod: 'ceil' });
   let limit;
   switch (distance) {
     case '400':
-      limit = 300;
+      limit = 5 * 60;
       break;
     case '600':
-      limit = 1080;
+      limit = 18 * 60;
       break;
     case '1000':
       limit = 0;
@@ -29,4 +29,9 @@ export function calculateResult(
   // prettier-ignore
   const response = `${hour.toString().padStart(2, '0')} : ${minute.toString().padStart(2, '0')}`;
   return response;
+}
+
+export function newDateZeroSecond(): Date {
+  const date = new Date().setSeconds(0, 0);
+  return new Date(date);
 }

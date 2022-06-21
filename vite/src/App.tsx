@@ -10,7 +10,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 import { useTimepicker, useDistance, useSwitch } from './hooks';
-import { calculateResult } from './util/calculate';
+import { calculateResult, newDateZeroSecond } from './util/calculate';
 import {
   getParameter,
   defineDistance,
@@ -36,12 +36,12 @@ const {
 
 const initialDistance = defineDistance(queryDistance);
 const initialDepart = departureTime
-  ? defineTime(new Date(), departureTime)
-  : new Date();
+  ? defineTime(newDateZeroSecond(), departureTime)
+  : newDateZeroSecond();
 
 function App() {
   const [depart, setDepart] = useTimepicker(initialDepart);
-  const [finish, setFinish] = useTimepicker(new Date());
+  const [finish, setFinish] = useTimepicker(newDateZeroSecond());
   const [distance, setDistance] = useDistance(initialDistance);
   const distanceLockSwitch = useSwitch(distanceLock);
   const departureLockSwitch = useSwitch(departureLock);
@@ -55,7 +55,8 @@ function App() {
 
   useEffect(() => {
     if (hiddenDisplay) {
-      setDepart(defineDate(depart, getDateString(new Date())));
+      setDepart(defineDate(depart, getDateString(newDateZeroSecond())));
+      setFinish(defineDate(finish, getDateString(newDateZeroSecond())));
     } else if (departureDate) {
       setDepart(defineDate(depart, departureDate));
     }

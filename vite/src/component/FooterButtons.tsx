@@ -7,9 +7,11 @@ import AlarmOnIcon from '@mui/icons-material/AlarmOn';
 import SettingsIcon from '@mui/icons-material/Settings';
 import QrCodeIcon from '@mui/icons-material/QrCode';
 
+import { newDateZeroSecond } from '@/util/calculate';
+
 const FooterButtons: React.FC<FooterButtonsProps> = (props) => {
   const { timeReset, settingsOpen, qrCodeOpen } = props;
-  const handleTimeReset = useCallback(() => timeReset(new Date()), []);
+  const handleTimeReset = useCallback(() => timeReset(newDateZeroSecond()), []);
   const handleSetting = useCallback(() => settingsOpen(true), []);
   const handleQrCode = useCallback(() => qrCodeOpen(true), []);
 
