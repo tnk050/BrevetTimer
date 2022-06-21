@@ -5,7 +5,7 @@ export function calculateResult(
   finish: Date,
   distance: Distance
 ): string {
-  let result = differenceInMinutes(finish, depart);
+  let result = differenceInMinutes(finish, depart, { roundingMethod: 'floor' });
   let limit;
   switch (distance) {
     case '400':
