@@ -10,7 +10,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 import { useTimepicker, useDistance, useSwitch } from './hooks';
-import { calculateResult } from './util/caluclate';
+import { calculateResult } from './util/calculate';
 import {
   getParameter,
   defineDistance,
