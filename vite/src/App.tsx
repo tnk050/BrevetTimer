@@ -110,6 +110,7 @@ function App() {
             {result}
           </Typography>
           <FooterButtons
+            timeReset={setFinish}
             settingsOpen={setSettingsOpen}
             qrCodeOpen={setQrCodeOpen}
           />
