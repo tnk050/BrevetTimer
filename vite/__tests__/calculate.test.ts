@@ -1,4 +1,6 @@
-import { calculateResult } from '../vite/src/util/calculate';
+import { expect, test } from 'vitest';
+
+import { calculateResult } from '../src/util/calculate';
 
 test('U400', () => {
   const dep = new Date(2022, 6, 21, 6, 0, 0);
