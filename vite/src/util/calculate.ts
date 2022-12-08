@@ -35,3 +35,7 @@ export function newDateZeroSecond(): Date {
   const date = new Date().setSeconds(0, 0);
   return new Date(date);
 }
+
+export function setZeroSecond(date: Date): Date {
+  return new Date(date.setSeconds(0, 0));
+}

@@ -1,16 +1,16 @@
 import { useState, useEffect, useMemo } from 'react';
 import { lazy, Suspense } from 'react';
 
-import { Typography } from '@mui/material';
-import { Container } from '@mui/material';
-import { Stack } from '@mui/material';
-import { Modal } from '@mui/material';
+import Typography from '@mui/material/Typography';
+import Container from '@mui/material/Container';
+import Stack from '@mui/material/Stack';
+import Modal from '@mui/material/Modal';
 
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 import { useTimepicker, useDistance, useSwitch } from './hooks';
-import { calculateResult, newDateZeroSecond } from './util/calculate';
+import { calculateResult, setZeroSecond } from './util/calculate';
 import {
   getParameter,
   defineDistance,
@@ -26,6 +26,7 @@ import FooterButtons from './component/FooterButtons';
 const SettingModal = lazy(() => import('./component/SettingModal'));
 const QrCodeModal = lazy(() => import('./component/QrCodeModal'));
 
+// parameter handling
 const {
   queryDistance,
   departureDate,
@@ -36,13 +37,15 @@ const {
 
 const initialDistance = defineDistance(queryDistance);
 const initialDepart = departureTime
-  ? defineTime(newDateZeroSecond(), departureTime)
-  : newDateZeroSecond();
+  ? defineTime(setZeroSecond(new Date()), departureTime)
+  : setZeroSecond(new Date());
 
 function App() {
+  // for calculating
   const [depart, setDepart] = useTimepicker(initialDepart);
-  const [finish, setFinish] = useTimepicker(newDateZeroSecond());
+  const [finish, setFinish] = useTimepicker(setZeroSecond(new Date()));
   const [distance, setDistance] = useDistance(initialDistance);
+  // for showing component
   const distanceLockSwitch = useSwitch(distanceLock);
   const departureLockSwitch = useSwitch(departureLock);
   const [settingsOpen, setSettingsOpen] = useState(false);
@@ -55,8 +58,8 @@ function App() {
 
   useEffect(() => {
     if (hiddenDisplay) {
-      setDepart(defineDate(depart, getDateString(newDateZeroSecond())));
-      setFinish(defineDate(finish, getDateString(newDateZeroSecond())));
+      setDepart(defineDate(depart, getDateString(setZeroSecond(new Date()))));
+      setFinish(defineDate(finish, getDateString(setZeroSecond(new Date()))));
     } else if (departureDate) {
       setDepart(defineDate(depart, departureDate));
     }

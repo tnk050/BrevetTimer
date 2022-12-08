@@ -2,15 +2,24 @@ import queryString from 'query-string';
 
 import { set, formatISO9075 } from 'date-fns';
 
+/**
+ *
+ * @param query
+ * parameters
+ *
+ * dist: distance
+ *
+ * dDate: date of departure
+ *
+ * dTime: time of departure
+ *
+ * distLock: disable distance button
+ *
+ * depLock: disable departure date and time
+ *
+ * @returns query object
+ */
 export function getParameter(query: string): Query {
-  /*
-  // get parameter
-  // dist: distance
-  // dDate: date of departure
-  // dTime: time of departure
-  // distLock: disable distance button
-  // depLock: disable departure date and time
-  */
   const param = queryString.parse(query, { parseBooleans: true });
   const queryDistance = param.dist?.toString();
 
