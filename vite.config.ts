@@ -16,4 +16,7 @@ export default defineConfig({
       '@/': `${path.resolve(root, 'src')}/`,
     },
   },
+  test: {
+    globals: true,
+  },
 });

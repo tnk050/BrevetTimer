@@ -1,5 +1,3 @@
-import { expect, test } from 'vitest';
-
 import { calculateResult } from '../src/util/calculate';
 
 test('U400', () => {
