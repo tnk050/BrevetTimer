@@ -18,7 +18,8 @@
     "paths": {
       "@/*": ["./vite/src/*"],
       "Appconfig": ["./vite/src/config/development.ts"]
-    }
+    },
+    "types": ["vitest/globals"]
   },
   "include": ["vite/src", "vite/src/@types"],
   "references": [{ "path": "./tsconfig.node.json" }]
